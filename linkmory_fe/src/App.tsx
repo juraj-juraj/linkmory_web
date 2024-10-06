@@ -13,17 +13,13 @@ function App() {
     setView(view => !view);
   }
   console.log("view: " + edit_data);
-  let display = ShowInfo();
-  if(edit_data === true){
-    display = UpdateInfo();
-  }
   return (
     <>
     <nav className="navbar-lm fixed-top"> 
         <h2>Profile</h2>
         <button type="button" onClick={changeView}><img className="img-navbar" src={logo}/></button>
     </nav>
-    {display}
+    {edit_data ? <UpdateInfo onSave={changeView}/> : <ShowInfo />}
     </>);
 }
 

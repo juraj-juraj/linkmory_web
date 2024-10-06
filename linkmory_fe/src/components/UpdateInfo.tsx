@@ -1,7 +1,9 @@
 import { FormEvent } from "react"
-import axios from "axios";
 
 
+interface props {
+    onSave(): void;
+}
 interface FormElements extends HTMLFormControlsCollection{
     name: HTMLInputElement
     bio: HTMLInputElement
@@ -14,7 +16,7 @@ interface UserEditFormElement extends HTMLFormElement{
     readonly elements: FormElements;
 }
 
-function UpdateInfo() {
+function UpdateInfo({onSave} : props) {
     const url_id = new URLSearchParams(window.location.search).get("id");
 
     async function handleSubmit(e: FormEvent<UserEditFormElement>){
@@ -49,6 +51,7 @@ function UpdateInfo() {
             console.error('Error:', error);
             // Optionally, handle error (e.g., show an error message)
         }
+        onSave();
     }
 
     return (
