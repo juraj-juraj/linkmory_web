@@ -1,0 +1,43 @@
+/* CSS for the <ul> list */
+.link-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100vh; /* Distribute items across the whole screen height */
+    padding: 0;
+    list-style-type: none;
+}
+
+/* CSS for each list item */
+.link-list .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+}
+
+/* CSS for the small logo */
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* To make it rounded */
+}
+
+/* CSS for the text string */
+.text {
+    flex: 1;
+    padding: 0 10px;
+}
+
+/* CSS for the copy link button */
+.button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

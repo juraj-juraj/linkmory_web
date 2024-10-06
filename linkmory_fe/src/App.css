@@ -1,0 +1,23 @@
+.navbar-lm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    height: 6em;
+}
+
+/* CSS for the heading */
+.navbar-lm h2 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; /* Allows the heading to grow and center */
+}
+
+/* CSS for the edit button */
+.img-navbar {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

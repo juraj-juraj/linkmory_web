@@ -1,0 +1,59 @@
+    .show-info-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 6em;
+        bottom: 0em;
+        right: 0em;
+        left: 0em;
+        padding-bottom: 8em;
+    }
+
+    .show-info-main .heading {
+        flex-grow: 2;
+    }
+
+    .show-info-main .bio {
+        flex-grow: 2;
+    }
+
+    .show-info-main h1 {
+        color: #000;
+        font-family: Dosis;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+    /* CSS for the button */
+    .contact-button {
+        background-color: #1877F2; /* Facebook blue color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        margin: 1em;
+    }
+
+    .facebook-bg{
+        background-color: #1976d2 /*#1877F2*/;
+    }
+
+    .linkedin-bg{
+        background-color: #0077b5;
+    }
+
+    .insta-bg {
+        background-color: #de437f;
+    }
+
+    .contact-button img {
+        margin-right: 10px; /* Space between image and text */
+        max-height: 20px; /* Adjust the max height of the image */
+    }
