@@ -4,9 +4,9 @@ import { FormEvent } from "react"
 interface FormElements extends HTMLFormControlsCollection{
     name: HTMLInputElement
     bio: HTMLInputElement
-    fb_url: HTMLInputElement
-    insta_url: HTMLInputElement
-    linkedin_url: HTMLInputElement
+    link_fb: HTMLInputElement
+    link_insta: HTMLInputElement
+    link_linkedin: HTMLInputElement
 }
 
 interface UserEditFormElement extends HTMLFormElement{
@@ -14,8 +14,12 @@ interface UserEditFormElement extends HTMLFormElement{
 }
 
 function UpdateInfo() {
+    const url_id = new URLSearchParams(window.location.search).get("id");
+
     function handleSubmit(e: FormEvent<UserEditFormElement>){
         e.preventDefault();
+        const form = e.currentTarget;
+        //fetch("http://127.0.0.1:8000/api/user/create?id="+url_id, {method: "POST", body: form.elements})
         //e.currentTarget.elements.bio.value;
     }
 
@@ -23,9 +27,10 @@ function UpdateInfo() {
         <form onSubmit={handleSubmit}>
             <input id="name" defaultValue="Name"/>
             <input id="bio" defaultValue="About me..."/>
-            <input id="fb_url" defaultValue="Paste your contact URL"/>
-            <input id="insta_url" defaultValue="Paste your contact URL"/>
-            <input id="linkedin_url" defaultValue="Paste your contact URL"/>
+            <input id="link_fb" defaultValue="Paste your contact URL"/>
+            <input id="link_insta" defaultValue="Paste your contact URL"/>
+            <input id="link_linkedin" defaultValue="Paste your contact URL"/>
+            <button>Send</button>
         </form>
     );
 }

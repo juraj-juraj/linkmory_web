@@ -23,12 +23,10 @@ function ShowInfo() {
         const api = async() => {
             const data = await fetch("http://127.0.0.1:8000/api/user/info?id="+url_id, {method: "GET"});
             const jsonData = await data.json();
-            //console.log(jsonData);
             setInfo(jsonData);
         };
         api();
     }, []);
-    console.log(info);
     return (
         <div className="show-info-main">
             <h1 className="heading" >{info.name}</h1>
