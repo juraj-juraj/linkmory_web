@@ -31,9 +31,9 @@ function ShowInfo() {
         <div className="show-info-main">
             <h1 className="heading" >{info.name}</h1>
             <p className="bio"> {info.bio}</p>
-            <button className="contact-button facebook-bg"><img src={fb_logo}/>Get Contact</button>
-            <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button>
-            <button className="contact-button insta-bg"><img src={insta_logo}/>Get Contact</button>
+            <a href={info.link_fb} > <button className="contact-button facebook-bg"><img src={fb_logo}/>Get Contact</button></a>
+            <a href={info.link_linkedin} > <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button></a>
+            <a href={info.link_insta}> <button className="contact-button insta-bg"><img src={insta_logo}/>Get Contact</button></a>
         </div>
     );
 }
