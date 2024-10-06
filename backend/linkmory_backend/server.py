@@ -14,6 +14,10 @@ class UserInfo(BaseModel):
     link_linkedin: Optional[str]
 
 
+class UserExists(BaseModel):
+    exists: bool
+
+
 users: dict[str, UserInfo] = dict()
 
 logging.basicConfig(level=logging.INFO)
@@ -56,3 +60,11 @@ async def get_user(id: str) -> UserInfo:
     if id not in users:
         raise HTTPException(status_code=404, detail=f"User {id} does not exist")
     return users[id]
+
+
+@app.get("/api/user/exist/")
+async def user_exists(id: str) -> UserExists:
+    global users
+    id = str(id)
+    logging.info(f"User_exists: {id}")
+    return UserExists(exists=id in users)
