@@ -1,3 +1,5 @@
+from typing import Optional
+
 import logging
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -6,10 +8,10 @@ from pydantic import BaseModel
 
 class UserInfo(BaseModel):
     name: str
-    bio: str | None
-    link_fb: str | None
-    link_insta: str | None
-    link_linkedin: str | None
+    bio: Optional[str]
+    link_fb: Optional[str]
+    link_insta: Optional[str]
+    link_linkedin: Optional[str]
 
 
 users: dict[str, UserInfo] = dict()
