@@ -10,6 +10,7 @@ python = ">=3.8,<4.0"
 fastapi = "0.115.0"
 pydantic = "^2.9.2"
 uvicorn = "^0.31.0"
+requests = "^2.32.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.0.0"

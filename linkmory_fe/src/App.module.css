@@ -1,0 +1,188 @@
+.profileCreationContainer {
+  background-color: #fff;
+  display: flex;
+  
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  /* font-family: Dosis; */
+  margin: 0 auto;
+  align-items: center;
+  justify-content: start;
+  min-height:0px;
+}
+
+.headerSection {
+  padding-top: 2em;
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  font-size: 24px;
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+}
+
+.headerTitle {
+  align-self: center;
+  font-size: 1em;
+  font-family: 'Dosis';
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.headerImage {
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  margin-top: 8px;
+}
+.imgNavbar {
+  width: 30px;
+  height: 30px;
+  display: block
+}
+
+.navbarButton{
+  padding: 0;
+  background-color: white;
+}
+
+.navbarTop{
+  display: flex;
+  justify-content: space-around;
+}
+
+.formSection {
+  display: flex;
+  margin-top: 38px;
+  width: 326px;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.formLabel {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  font-size: 20px;
+  color: #8a8a8a;
+  font-weight: 400;
+  justify-content: start;
+}
+
+.inputGroup {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.inputWrapper {
+  border-radius: 10px;
+  background-color: #f4f4f4;
+  display: flex;
+  gap: 11px;
+  padding: 15px 18px;
+}
+
+.inputIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+}
+
+.inputField {
+  flex-grow: 1;
+  width: 249px;
+  flex-basis: auto;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.textareaWrapper {
+  border-radius: 10px;
+  background-color: #f4f4f4;
+  padding: 12px 20px;
+}
+
+.textarea {
+  width: 100%;
+  height: 85px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  resize: none;
+}
+
+.socialLinksSection {
+  display: flex;
+  margin-top: 28px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.uploadButton {
+  border-radius: 5px;
+  background-color: #f5b700;
+  align-self: center;
+  display: flex;
+  margin-top: 26px;
+  min-height: 61px;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  color: #9d3221;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center;
+  justify-content: center;
+  padding: 11px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.uploadIcon {
+  aspect-ratio: 0.97;
+  object-fit: contain;
+  object-position: center;
+  width: 38px;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.uploadText {
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@font-face {
+  font-family: 'Dosis'; /* Name of the font */
+  src: url('fonts/Dosis-Medium.ttf'); /* Add other formats if necessary */
+  font-weight: normal; /* Specify the font weight */
+}
+
+@font-face {
+  font-family: 'Dosis'; /* Name of the font */
+  src: url('fonts/Dosis-Bold.ttf'); /* Add other formats if necessary */
+  font-weight: bold; /* Specify the font weight */
+}
