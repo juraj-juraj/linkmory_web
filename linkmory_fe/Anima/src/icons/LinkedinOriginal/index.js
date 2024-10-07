@@ -1,1 +1,0 @@
-export { LinkedinOriginal } from "./LinkedinOriginal";
