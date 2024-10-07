@@ -55,15 +55,31 @@ function UpdateInfo({onSave} : props) {
         }
         onSave();
     }
-
     return (
         <form onSubmit={handleSubmit}>
+            <div>
+                Name:
+            </div>
             <input id="name" name="name" defaultValue="Name"/>
+            <div>
+                About me:
+            </div>
             <input id="bio" name="bio" defaultValue="About me..."/>
+            <div>
+                Facebook link:
+            </div>
             <input id="link_fb" name="link_fb" defaultValue="Paste your contact URL"/>
+            <div>
+                Instagram link:
+            </div>
             <input id="link_insta" name="link_insta" defaultValue="Paste your contact URL"/>
+            <div>
+                LinkedIn link:
+            </div>
             <input id="link_linkedin" name="link_linkedin" defaultValue="Paste your contact URL"/>
-            <button type="submit">Send</button>
+            <div>
+            </div>
+            <button type="submit">Share</button>
         </form>
     );
 }
