@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
+import config from "./config.json";
 import logo from "./assets/edit.png";
 import "./App.css";
 import ShowInfo from "./components/ShowInfo";
@@ -19,7 +20,7 @@ function App() {
   }
   useEffect(() => {
       const api = async() => {
-          const data = await fetch("http://127.0.0.1:8000/api/user/exist?id="+url_id, {method: "GET"});
+          const data = await fetch(config.bUrl + "/user/exist?id="+url_id, {method: "GET"});
           const jsonData = await data.json();
           setUserExists(jsonData);
           if (jsonData && jsonData.exists !== undefined) {

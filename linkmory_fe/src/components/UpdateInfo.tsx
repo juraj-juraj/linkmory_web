@@ -1,5 +1,7 @@
 import { FormEvent } from "react"
 
+import config from "../config.json";
+
 
 interface props {
     onSave(): void;
@@ -31,7 +33,7 @@ function UpdateInfo({onSave} : props) {
         };
         try {
             console.log(JSON.stringify(formData));
-            const response = await fetch("http://127.0.0.1:8000/api/user/create/?id="+url_id, {
+            const response = await fetch(config.bUrl+"/user/create/?id="+url_id, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

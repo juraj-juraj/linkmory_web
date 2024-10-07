@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+import config from "../config.json";
 import fb_logo from "../assets/facebook.png";
 import insta_logo from "../assets/instagram.png";
 import linkedin_logo from "../assets/linkedin.png";
@@ -21,7 +22,7 @@ function ShowInfo() {
     const [info, setInfo] = useState<userInfo[]>([]);
     useEffect(() => {
         const api = async() => {
-            const data = await fetch("http://127.0.0.1:8000/api/user/info?id="+url_id, {method: "GET"});
+            const data = await fetch(config.bUrl+"/user/info?id="+url_id, {method: "GET"});
             const jsonData = await data.json();
             setInfo(jsonData);
         };
