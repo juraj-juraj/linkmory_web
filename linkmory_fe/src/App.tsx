@@ -7,13 +7,13 @@ import "./App.css";
 import ShowInfo from "./components/ShowInfo";
 import  UpdateInfo from "./components/UpdateInfo"
 
-type UserExist = {
-  exists: boolean
+class UserExist {
+  exists: boolean = false;
 }
 
 function App() {
   const url_id = new URLSearchParams(window.location.search).get("id");
-  const [user_exists, setUserExists] = useState<UserExist[]>([]);
+  const [user_exists, setUserExists] = useState<UserExist>(new UserExist());
   const [edit_data, setView] = useState(false);
   const changeView = () => {
     setView(view => !view);

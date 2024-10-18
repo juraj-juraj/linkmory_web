@@ -5,11 +5,9 @@ import fb_logo from "../assets/facebook.png";
 import insta_logo from "../assets/instagram.png";
 import linkedin_logo from "../assets/linkedin.png";
 
-//import getUserData from "../services/userService";
-
 import "./ShowInfo.css"
 
-type userInfo = {
+interface userInfo {
     name: string,
     bio: string,
     link_fb: string,
@@ -19,7 +17,7 @@ type userInfo = {
 
 function ShowInfo() {
     const url_id = new URLSearchParams(window.location.search).get("id");
-    const [info, setInfo] = useState<userInfo[]>([]);
+    const [info, setInfo] = useState<userInfo>({name: "name", bio: "", link_fb: "", link_insta: "", link_linkedin: ""});
     useEffect(() => {
         const api = async() => {
             const data = await fetch(config.bUrl+"/user/info?id="+url_id, {method: "GET"});
@@ -27,7 +25,7 @@ function ShowInfo() {
             setInfo(jsonData);
         };
         api();
-    }, []);
+    }, [url_id]);
     return (
         <div className="show-info-main">
             <h1 className="heading" >{info.name}</h1>
