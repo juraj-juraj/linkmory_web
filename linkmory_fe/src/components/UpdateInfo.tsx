@@ -44,7 +44,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
             "bio": form.elements.bio.value,
             "link_fb": form.elements.link_fb.value,
             "link_insta": form.elements.link_insta.value,
-            "link_linkedin": form.elements.link_linkedin.value
+            "link_linkedin": form.elements.link_linkedin.value,
+            "id_fb": ""
         };
         try {
             console.log(JSON.stringify(formData));

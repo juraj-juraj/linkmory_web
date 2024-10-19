@@ -30,8 +30,6 @@ function App() {
       }; // end of lambda fun
       api(); // run the lambda fun
   }, [url_id, edit_data, user_info.name]); // call useEffect when url_id is changed
-  console.log("user exists: " + edit_data);
-  console.log("view: " + edit_data);
   return (
     <main className={styles.profileCreationContainer}>
         <header className={styles.headerSection}>

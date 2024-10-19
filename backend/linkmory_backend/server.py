@@ -1,4 +1,6 @@
 from typing import Optional
+import requests
+import re
 
 import logging
 from fastapi import FastAPI, HTTPException, status, Request
@@ -12,6 +14,7 @@ class UserInfo(BaseModel):
     link_fb: Optional[str]
     link_insta: Optional[str]
     link_linkedin: Optional[str]
+    id_fb: Optional[str]
 
 
 class UserExists(BaseModel):
@@ -62,7 +65,14 @@ async def get_user(id: str) -> UserInfo:
     logging.info(f"Get id: {id}")
     if id not in users:
         raise HTTPException(status_code=404, detail=f"User {id} does not exist")
-    return users[id]
+    user = users[id].model_copy()
+    if user.link_fb:
+        fb_response = requests.get(user.link_fb)
+        if fb_response.status_code == 200:
+            match = re.search(r'content="fb://profile/(\d+)"', fb_response.text)
+            if match:
+                user.id_fb = match.group(1)
+    return user
 
 
 @app.get("/api/user/exist/")
