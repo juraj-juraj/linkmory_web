@@ -2,13 +2,15 @@ import { FormEvent } from "react"
 
 import config from "../config.json";
 import userInfo from "../models/userModel";
+import styles from "./UpdateInfo.module.css";
+import InputField from './InputField.tsx';
 
 interface props {
     onSave(): void;
-    url_id: string|null;
+    url_id: string | null;
     user_info: userInfo
 }
-interface FormElements extends HTMLFormControlsCollection{
+interface FormElements extends HTMLFormControlsCollection {
     name: HTMLInputElement
     bio: HTMLInputElement
     link_fb: HTMLInputElement
@@ -16,12 +18,23 @@ interface FormElements extends HTMLFormControlsCollection{
     link_linkedin: HTMLInputElement
 }
 
-interface UserEditFormElement extends HTMLFormElement{
+interface UserEditFormElement extends HTMLFormElement {
     readonly elements: FormElements;
 }
 
-function UpdateInfo({onSave, url_id, user_info} : props) {
-    async function handleSubmit(e: FormEvent<UserEditFormElement>){
+interface SocialInputData {
+    icon: string;
+    placeholder: string;
+}
+
+const socialInputs: SocialInputData[] = [
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Instagram URL' },
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c74d3c6cea8a1db389dadde13971b93162450de59728897220ae96fb96aa9997?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Facebook URL' },
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' },
+];
+
+function UpdateInfo({ onSave, url_id, user_info }: props) {
+    async function handleSubmit(e: FormEvent<UserEditFormElement>) {
         e.preventDefault();
         const form = e.currentTarget;
         const formData = {
@@ -33,7 +46,7 @@ function UpdateInfo({onSave, url_id, user_info} : props) {
         };
         try {
             console.log(JSON.stringify(formData));
-            const response = await fetch(config.bUrl+"/user/create/?id="+url_id, {
+            const response = await fetch(config.bUrl + "/user/create/?id=" + url_id, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -56,30 +69,40 @@ function UpdateInfo({onSave, url_id, user_info} : props) {
         onSave();
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                Name:
-            </div>
-            <input id="name" placeholder="Name" defaultValue={user_info.name}/>
-            <div>
-                About me:
-            </div>
-            <input id="bio" placeholder="About me..." defaultValue={user_info.bio}/>
-            <div>
-                Facebook link:
-            </div>
-            <input id="link_fb" placeholder="Paste your contact URL" defaultValue={user_info.link_fb}/>
-            <div>
-                Instagram link:
-            </div>
-            <input id="link_insta" placeholder="Paste your contact URL" defaultValue={user_info.link_insta}/>
-            <div>
-                LinkedIn link:
-            </div>
-            <input id="link_linkedin" placeholder="Paste your contact URL" defaultValue={user_info.link_linkedin}/>
-            <div>
-            </div>
-            <button type="submit">Share</button>
+        <form className={styles.formContainer}>
+            <section className={styles.formSection}>
+                <div className={styles.inputGroup}>
+                    <InputField
+                        icon="https://cdn.builder.io/api/v1/image/assets/TEMP/f8a2cf5312baf73a5ea4160c58b16e61f2e1125f17a34dbb90fe617241ec07b2?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d"
+                        placeholder="Name"
+                        type="text"
+                        id="name"
+                    />
+                    <div className={styles.textareaWrapper}>
+                        <label htmlFor="aboutMe" className={styles['visually-hidden']}>About me</label>
+                        <textarea
+                            id="aboutMe"
+                            className={styles.textarea}
+                            placeholder="About me..."
+                        ></textarea>
+                    </div>
+                </div>
+                <div className={styles.socialInputs}>
+                    {socialInputs.map((input, index) => (
+                        <InputField
+                            key={index}
+                            icon={input.icon}
+                            placeholder={input.placeholder}
+                            type="url"
+                            id={`social-${index}`}
+                        />
+                    ))}
+                </div>
+            </section>
+            <button type="submit" className={styles.uploadButton}>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5851a9470c7e4a22b3958b2c6c5b27c25f65c366bb87cfa1570f91e081b27252?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d" alt="" className={styles.uploadIcon} />
+                <span>Upload</span>
+            </button>
         </form>
     );
 }
