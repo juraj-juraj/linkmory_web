@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import config from "./config.json";
 import logo from "./assets/edit.png";
-import "./App.css";
+import styles from "./App.module.css";
 import ShowInfo from "./components/ShowInfo";
 import  UpdateInfo from "./components/UpdateInfo"
 import userInfo from "./models/userModel";
@@ -33,14 +33,14 @@ function App() {
   console.log("user exists: " + edit_data);
   console.log("view: " + edit_data);
   return (
-    <>
-    <nav className="navbar-lm fixed-top"> 
-        <h2>Profile</h2>
-        <button type="button" onClick={changeView}><img className="img-navbar" src={logo}/></button>
-    </nav>
+    <main className={styles.profileCreationContainer}>
+        <header className={styles.headerSection}>
+          <h1 className={styles.headerTitle}>Make a profile</h1>
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/670fe62f49123097f1c74007524d0b953da1dd440a037cd4d654646d6e7d3feb?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d" alt="" className={styles.headerImage} />
+        </header>
     {/* Based on edit_data - decide which React fun to render (run) - pass the changeView var through onSave fun*/}
     {edit_data ? <ShowInfo user_info={user_info} /> : <UpdateInfo onSave={changeView} url_id={url_id} user_info={user_info}/>}
-    </>);
+    </main>);
 }
 
 export default App;
