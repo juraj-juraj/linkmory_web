@@ -27,6 +27,8 @@
 .headerTitle {
   align-self: center;
   font-size: 1em;
+  font-family: 'Dosis';
+  margin-bottom: 0;
 }
 .headerImage {
   object-fit: contain;
@@ -37,10 +39,12 @@
 .imgNavbar {
   width: 30px;
   height: 30px;
+  display: block
 }
 
 .navbarButton{
   padding: 0;
+  background-color: white;
 }
 
 .navbarTop{
