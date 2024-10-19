@@ -19,6 +19,7 @@ function InputField({ icon, placeholder, type, id, default_value }: InputFieldPr
         className={styles.input}
         placeholder={placeholder}
         defaultValue={default_value}
+        autoCapitalize="off"
       />
     </div>
   );
