@@ -13,7 +13,7 @@
 }
 
 .headerSection {
-  padding-top: 1em;
+  padding-top: 2em;
   display: flex;
   max-width: 100%;
   width: 391px;
@@ -28,6 +28,7 @@
   align-self: center;
   font-size: 1em;
   font-family: 'Dosis';
+  font-weight: bold;
   margin-bottom: 0;
 }
 .headerImage {
