@@ -153,3 +153,15 @@
   white-space: nowrap;
   border: 0;
 }
+
+@font-face {
+  font-family: 'Dosis'; /* Name of the font */
+  src: url('../fonts/Dosis-Medium.ttf'); /* Add other formats if necessary */
+  font-weight: normal; /* Specify the font weight */
+}
+
+@font-face {
+  font-family: 'Dosis'; /* Name of the font */
+  src: url('../fonts/Dosis-Bold.ttf'); /* Add other formats if necessary */
+  font-weight: bold; /* Specify the font weight */
+}
