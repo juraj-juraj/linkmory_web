@@ -1,11 +1,12 @@
 import { FormEvent } from "react"
 
 import config from "../config.json";
-
+import userInfo from "../models/userModel";
 
 interface props {
     onSave(): void;
     url_id: string|null;
+    user_info: userInfo
 }
 interface FormElements extends HTMLFormControlsCollection{
     name: HTMLInputElement
@@ -19,7 +20,7 @@ interface UserEditFormElement extends HTMLFormElement{
     readonly elements: FormElements;
 }
 
-function UpdateInfo({onSave, url_id} : props) {
+function UpdateInfo({onSave, url_id, user_info} : props) {
     async function handleSubmit(e: FormEvent<UserEditFormElement>){
         e.preventDefault();
         const form = e.currentTarget;
@@ -59,23 +60,23 @@ function UpdateInfo({onSave, url_id} : props) {
             <div>
                 Name:
             </div>
-            <input id="name" placeholder="Name"/>
+            <input id="name" placeholder="Name" defaultValue={user_info.name}/>
             <div>
                 About me:
             </div>
-            <input id="bio" placeholder="About me..."/>
+            <input id="bio" placeholder="About me..." defaultValue={user_info.bio}/>
             <div>
                 Facebook link:
             </div>
-            <input id="link_fb" placeholder="Paste your contact URL"/>
+            <input id="link_fb" placeholder="Paste your contact URL" defaultValue={user_info.link_fb}/>
             <div>
                 Instagram link:
             </div>
-            <input id="link_insta" placeholder="Paste your contact URL"/>
+            <input id="link_insta" placeholder="Paste your contact URL" defaultValue={user_info.link_insta}/>
             <div>
                 LinkedIn link:
             </div>
-            <input id="link_linkedin" placeholder="Paste your contact URL"/>
+            <input id="link_linkedin" placeholder="Paste your contact URL" defaultValue={user_info.link_linkedin}/>
             <div>
             </div>
             <button type="submit">Share</button>
