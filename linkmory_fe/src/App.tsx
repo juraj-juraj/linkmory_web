@@ -37,7 +37,7 @@ function App() {
         <h2>Profile</h2>
         <button type="button" onClick={changeView}><img className="img-navbar" src={logo}/></button>
     </nav>
-    {edit_data ? <ShowInfo /> : <UpdateInfo onSave={changeView}/>}
+    {edit_data ? <ShowInfo /> : <UpdateInfo onSave={changeView} url_id={url_id}/>}
     </>);
 }
 

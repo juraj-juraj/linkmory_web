@@ -5,6 +5,7 @@ import config from "../config.json";
 
 interface props {
     onSave(): void;
+    url_id: string|null;
 }
 interface FormElements extends HTMLFormControlsCollection{
     name: HTMLInputElement
@@ -18,9 +19,7 @@ interface UserEditFormElement extends HTMLFormElement{
     readonly elements: FormElements;
 }
 
-function UpdateInfo({onSave} : props) {
-    const url_id = new URLSearchParams(window.location.search).get("id");
-
+function UpdateInfo({onSave, url_id} : props) {
     async function handleSubmit(e: FormEvent<UserEditFormElement>){
         e.preventDefault();
         const form = e.currentTarget;
@@ -60,23 +59,23 @@ function UpdateInfo({onSave} : props) {
             <div>
                 Name:
             </div>
-            <input id="name" name="name" defaultValue="Name"/>
+            <input id="name" placeholder="Name"/>
             <div>
                 About me:
             </div>
-            <input id="bio" name="bio" defaultValue="About me..."/>
+            <input id="bio" placeholder="About me..."/>
             <div>
                 Facebook link:
             </div>
-            <input id="link_fb" name="link_fb" defaultValue="Paste your contact URL"/>
+            <input id="link_fb" placeholder="Paste your contact URL"/>
             <div>
                 Instagram link:
             </div>
-            <input id="link_insta" name="link_insta" defaultValue="Paste your contact URL"/>
+            <input id="link_insta" placeholder="Paste your contact URL"/>
             <div>
                 LinkedIn link:
             </div>
-            <input id="link_linkedin" name="link_linkedin" defaultValue="Paste your contact URL"/>
+            <input id="link_linkedin" placeholder="Paste your contact URL"/>
             <div>
             </div>
             <button type="submit">Share</button>
