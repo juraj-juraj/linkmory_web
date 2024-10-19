@@ -34,6 +34,19 @@
   width: 100%;
   margin-top: 8px;
 }
+.imgNavbar {
+  width: 30px;
+  height: 30px;
+}
+
+.navbarButton{
+  padding: 0;
+}
+
+.navbarTop{
+  display: flex;
+  justify-content: space-around;
+}
 
 .formSection {
   display: flex;
