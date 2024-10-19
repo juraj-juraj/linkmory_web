@@ -91,7 +91,6 @@
   object-fit: contain;
   object-position: center;
   width: 24px;
-  align-self: start;
 }
 
 .inputField {

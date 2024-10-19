@@ -17,6 +17,8 @@
 
     .show-info-main .bio {
         font-family: 'Dosis';
+        text-align: center;
+        padding: 0px 3em;
     }
 
     .show-info-main h1 {
