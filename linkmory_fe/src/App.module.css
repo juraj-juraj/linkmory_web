@@ -5,15 +5,15 @@
   width: 100%;
   flex-direction: column;
   overflow: hidden;
-  font-family: Dosis, sans-serif;
+  /* font-family: Dosis; */
   margin: 0 auto;
-  padding: 5px 10px 247px;
   align-items: center;
   justify-content: start;
   min-height:0px;
 }
 
 .headerSection {
+  padding-top: 1em;
   display: flex;
   max-width: 100%;
   width: 391px;
