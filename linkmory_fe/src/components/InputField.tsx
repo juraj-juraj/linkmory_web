@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './UpdateInfo.module.css';
 
 interface InputFieldProps {
@@ -6,9 +5,10 @@ interface InputFieldProps {
   placeholder: string;
   type: string;
   id: string;
+  default_value: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ icon, placeholder, type, id }) => {
+function InputField({ icon, placeholder, type, id, default_value }: InputFieldProps) {
   return (
     <div className={styles.inputWrapper}>
       <img src={icon} alt="" className={styles.inputIcon} />
@@ -18,6 +18,7 @@ const InputField: React.FC<InputFieldProps> = ({ icon, placeholder, type, id }) 
         id={id}
         className={styles.input}
         placeholder={placeholder}
+        defaultValue={default_value}
       />
     </div>
   );

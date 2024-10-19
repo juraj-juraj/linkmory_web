@@ -25,12 +25,14 @@ interface UserEditFormElement extends HTMLFormElement {
 interface SocialInputData {
     icon: string;
     placeholder: string;
+    id: string;
+    type: string;
 }
 
 const socialInputs: SocialInputData[] = [
-    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Instagram URL' },
-    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c74d3c6cea8a1db389dadde13971b93162450de59728897220ae96fb96aa9997?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Facebook URL' },
-    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' },
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Instagram nick', id: "link_insta", type: "text" },
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c74d3c6cea8a1db389dadde13971b93162450de59728897220ae96fb96aa9997?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Facebook URL' , id: "link_fb", type: "url"},
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' , id: "link_linkedin", type: "url"},
 ];
 
 function UpdateInfo({ onSave, url_id, user_info }: props) {
@@ -69,7 +71,7 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
         onSave();
     }
     return (
-        <form className={styles.formContainer}>
+        <form className={styles.formContainer} onSubmit={handleSubmit}>
             <section className={styles.formSection}>
                 <div className={styles.inputGroup}>
                     <InputField
@@ -77,13 +79,15 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                         placeholder="Name"
                         type="text"
                         id="name"
+                        default_value={user_info.name}
                     />
                     <div className={styles.textareaWrapper}>
                         <label htmlFor="aboutMe" className={styles['visually-hidden']}>About me</label>
                         <textarea
-                            id="aboutMe"
+                            id="bio"
                             className={styles.textarea}
                             placeholder="About me..."
+                            defaultValue={user_info.bio}
                         ></textarea>
                     </div>
                 </div>
@@ -93,8 +97,9 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                             key={index}
                             icon={input.icon}
                             placeholder={input.placeholder}
-                            type="url"
-                            id={`social-${index}`}
+                            type={input.type}
+                            id={input.id}
+                            default_value={user_info[input.id as keyof userInfo]}
                         />
                     ))}
                 </div>
