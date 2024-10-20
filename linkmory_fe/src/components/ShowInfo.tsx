@@ -12,13 +12,13 @@ interface props{
 function ShowInfo({user_info}: props) {
     const userAgent = navigator.userAgent.toLowerCase();
     let fb_link = user_info.link_fb;
-    if (/iphone|ipad|ipod/.test(userAgent)) {
+    /*if (/iphone|ipad|ipod/.test(userAgent)) {
         console.log('iOS');
         fb_link = "fb://profile/" + user_info.id_fb;
     } else if (/android/.test(userAgent)) {
         console.log('Android');
         fb_link = "intent://profile/" +user_info.id_fb + "#Intent;package=com.facebook.katana;scheme=fb;end";
-    }
+    }*/
     return (
         <div className="show-info-main">
             <h1 className="heading" >{user_info.name}</h1>
