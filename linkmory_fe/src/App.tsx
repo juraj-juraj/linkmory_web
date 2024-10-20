@@ -18,7 +18,7 @@ function App() {
   }
   useEffect(() => { // inbuild fun to constantnly use when rendering
       const api = async() => { // define assynchronous fun - not waiting for its finish
-          const data = await fetch(config.bUrl + "/user/info?id="+url_id, {method: "GET"}); // GET - ziskaj data z backend URL
+          const data = await fetch(config.bUrl + "/user/info/?id="+url_id, {method: "GET"}); // GET - ziskaj data z backend URL
           if(data.status === 404){
             setView(false);
             return

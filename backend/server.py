@@ -41,8 +41,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://linkmory-web-1.onrender.com",
-        "http://localhost:5173",
+        "https://linkmory-frontend.onrender.com",
     ],  # React app's URL
     allow_credentials=True,
     allow_methods=["*"],
@@ -67,7 +66,7 @@ async def get_user(id: str) -> UserInfo:
         raise HTTPException(status_code=404, detail=f"User {id} does not exist")
     user = users[id].model_copy()
     if user.link_fb:
-        fb_response = requests.get(user.link_fb)
+        fb_response = requests.get(user.link_fb, timeout=2)  # 5 seconds timeout
         if fb_response.status_code == 200:
             match = re.search(r'content="fb://profile/(\d+)"', fb_response.text)
             if match:
