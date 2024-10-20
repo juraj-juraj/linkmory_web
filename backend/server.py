@@ -41,7 +41,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://linkmory-frontend.onrender.com",
+        "*",
     ],  # React app's URL
     allow_credentials=True,
     allow_methods=["*"],
