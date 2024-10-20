@@ -30,7 +30,7 @@ interface SocialInputData {
 }
 
 const socialInputs: SocialInputData[] = [
-    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Instagram nick', id: "link_insta", type: "text" },
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Your Instagram username', id: "link_insta", type: "text" },
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c74d3c6cea8a1db389dadde13971b93162450de59728897220ae96fb96aa9997?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Facebook URL' , id: "link_fb", type: "url"},
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' , id: "link_linkedin", type: "url"},
 ];

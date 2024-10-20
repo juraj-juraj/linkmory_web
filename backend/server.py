@@ -80,3 +80,7 @@ async def user_exists(id: str) -> UserExists:
     id = str(id)
     logging.info(f"User_exists: {id}")
     return UserExists(exists=id in users)
+
+@app.get("/")
+def read_root():
+    return {"message": "API is working"}
