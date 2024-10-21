@@ -17,6 +17,10 @@ class UserInfo(BaseModel):
     id_fb: Optional[str]
 
 
+class createResponse(BaseModel):
+    return_message: str
+
+
 class UserExists(BaseModel):
     exists: bool
 
@@ -50,11 +54,19 @@ app.add_middleware(
 
 
 @app.post("/api/user/create/")
-async def create_user(id: str, request: UserInfo) -> UserInfo:
+async def create_user(id: str, request: UserInfo) -> createResponse:
     global users
-    logging.info(f"Post id: {id}")
+    if not request.name:
+        if id in users:
+            del users[id]
+            logging.info(f"Deleting user {id}")
+            return createResponse(return_message=f"User {id} deleted successfully")
+        logging.info(f"Id {id} not created")
+        return createResponse(return_message=f"User {id} did not create")
+
+    logging.info(f"Creating id: {id}")
     users[id] = request
-    return users[id]
+    return createResponse(return_message=f"User {id} created successfully")
 
 
 @app.get("/api/user/info/")
@@ -80,6 +92,7 @@ async def user_exists(id: str) -> UserExists:
     id = str(id)
     logging.info(f"User_exists: {id}")
     return UserExists(exists=id in users)
+
 
 @app.get("/")
 def read_root():

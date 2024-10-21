@@ -69,6 +69,9 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
             console.error('Error:', error);
             // Optionally, handle error (e.g., show an error message)
         }
+        if(form.elements.name.value.length === 0){
+            return;
+        }
         onSave();
     }
     return (
