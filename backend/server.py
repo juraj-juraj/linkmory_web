@@ -65,6 +65,13 @@ async def create_user(id: str, request: UserInfo) -> createResponse:
         return createResponse(return_message=f"User {id} did not create")
 
     logging.info(f"Creating id: {id}")
+    if request.link_insta and (
+        request.link_insta.startswith("https://www.instagram.com/")
+        or request.link_insta.startswith("https://instagram.com/")
+    ):
+        request.link_insta = re.sub(
+            r"https://(www\.)?instagram\.com/", "", request.link_insta
+        ).split("/")[0]
     users[id] = request
     return createResponse(return_message=f"User {id} created successfully")
 
