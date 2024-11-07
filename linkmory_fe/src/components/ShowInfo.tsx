@@ -2,7 +2,7 @@ import userInfo from "../models/userModel"
 import fb_logo from "../assets/facebook.png";
 import insta_logo from "../assets/instagram.png";
 import linkedin_logo from "../assets/linkedin.png";
-
+import web_logo from '../assets/fi_link_w.png';
 import "./ShowInfo.css"
 
 interface props{
@@ -26,6 +26,7 @@ function ShowInfo({user_info}: props) {
             {user_info.link_insta ? <a href={"https://instagram.com/" + user_info.link_insta}> <button className="contact-button insta-bg"><img src={insta_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_fb ?  <a href={fb_link} > <button className="contact-button facebook-bg"><img src={fb_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_linkedin ? <a href={user_info.link_linkedin} > <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button></a> : <></>}
+            {user_info.link_website ? <a href={user_info.link_website} > <button className="contact-button web-bg"><img src={web_logo}/>Visit Website</button></a> : <></>}
         </div>
     );
 }

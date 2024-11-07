@@ -5,6 +5,8 @@ import config from "../config.json";
 import userInfo from "../models/userModel";
 import styles from "./UpdateInfo.module.css";
 import InputField from './InputField.tsx';
+import linkIcon from '../assets/fi_link.png';
+
 
 interface props {
     onSave(): void;
@@ -17,6 +19,7 @@ interface FormElements extends HTMLFormControlsCollection {
     link_fb: HTMLInputElement
     link_insta: HTMLInputElement
     link_linkedin: HTMLInputElement
+    link_website: HTMLInputElement
 }
 
 interface UserEditFormElement extends HTMLFormElement {
@@ -34,6 +37,7 @@ const socialInputs: SocialInputData[] = [
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Your Instagram username', id: "link_insta", type: "text" },
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c74d3c6cea8a1db389dadde13971b93162450de59728897220ae96fb96aa9997?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Facebook URL' , id: "link_fb", type: "url"},
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' , id: "link_linkedin", type: "url"},
+    { icon: linkIcon, placeholder: 'Paste your Website URL' , id: "link_website", type: "url"},
 ];
 
 function UpdateInfo({ onSave, url_id, user_info }: props) {
@@ -48,7 +52,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
             "link_fb": form.elements.link_fb.value,
             "link_insta": form.elements.link_insta.value,
             "link_linkedin": form.elements.link_linkedin.value,
-            "id_fb": ""
+            "id_fb": "",
+            "link_website": form.elements.link_website.value,
         };
         try {
             console.log(JSON.stringify(formData));

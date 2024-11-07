@@ -15,7 +15,7 @@ class UserInfo(BaseModel):
     link_insta: Optional[str]
     link_linkedin: Optional[str]
     id_fb: Optional[str]
-
+    link_website: Optional[str]
 
 class createResponse(BaseModel):
     return_message: str
