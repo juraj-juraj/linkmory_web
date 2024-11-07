@@ -1,4 +1,5 @@
 import { FormEvent } from "react"
+import { useCookies } from 'react-cookie';
 
 import config from "../config.json";
 import userInfo from "../models/userModel";
@@ -36,6 +37,7 @@ const socialInputs: SocialInputData[] = [
 ];
 
 function UpdateInfo({ onSave, url_id, user_info }: props) {
+    const [_, set_id_cookie] = useCookies(["user_id"])
     async function handleSubmit(e: FormEvent<UserEditFormElement>) {
         e.preventDefault();
         const form = e.currentTarget;
@@ -72,6 +74,11 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
         if(form.elements.name.value.length === 0){
             return;
         }
+        // Handling saving cookie on creating an account
+        const expirationDate = new Date();
+        expirationDate.setMinutes(expirationDate.getMinutes() + 15);
+        set_id_cookie("user_id", url_id, {expires: expirationDate});
+
         onSave();
     }
     return (
