@@ -6,9 +6,10 @@ interface InputFieldProps {
   type: string;
   id: string;
   default_value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function InputField({ icon, placeholder, type, id, default_value }: InputFieldProps) {
+function InputField({ icon, placeholder, type, id, default_value, onChange}: InputFieldProps) {
   return (
     <div className={styles.inputWrapper}>
       <img src={icon} alt="" className={styles.inputIcon} />
@@ -20,6 +21,7 @@ function InputField({ icon, placeholder, type, id, default_value }: InputFieldPr
         placeholder={placeholder}
         defaultValue={default_value}
         autoCapitalize="off"
+        onChange={onChange}
       />
     </div>
   );

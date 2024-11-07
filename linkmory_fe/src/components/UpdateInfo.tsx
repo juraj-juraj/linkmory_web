@@ -38,6 +38,7 @@ const socialInputs: SocialInputData[] = [
 
 function UpdateInfo({ onSave, url_id, user_info }: props) {
     const [_, set_id_cookie] = useCookies(["user_id"])
+    const [buffer_cookie, set_buffer_cookie] = useCookies(["name", "bio", "link_fb", "link_insta", "link_linkedin"])
     async function handleSubmit(e: FormEvent<UserEditFormElement>) {
         e.preventDefault();
         const form = e.currentTarget;
@@ -90,7 +91,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                         placeholder="Name"
                         type="text"
                         id="name"
-                        default_value={user_info.name}
+                        default_value={user_info.name ? user_info.name : buffer_cookie["name"]}
+                        onChange={(e) => set_buffer_cookie("name", e.target.value)}
                     />
                     <div className={styles.textareaWrapper}>
                         <label htmlFor="aboutMe" className={styles['visually-hidden']}>About me</label>
@@ -98,7 +100,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                             id="bio"
                             className={styles.textarea}
                             placeholder="About me..."
-                            defaultValue={user_info.bio}
+                            defaultValue={user_info.bio ? user_info.bio : buffer_cookie["bio"]}
+                            onChange={(e) => set_buffer_cookie("bio", e.target.value)}
                         ></textarea>
                     </div>
                 </div>
@@ -110,7 +113,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                             placeholder={input.placeholder}
                             type={input.type}
                             id={input.id}
-                            default_value={user_info[input.id as keyof userInfo]}
+                            default_value={user_info[input.id as keyof userInfo]? user_info[input.id as keyof userInfo] : buffer_cookie[input.id as keyof userInfo]}
+                            onChange={(e) => set_buffer_cookie(input.id, e.target.value)}
                         />
                     ))}
                 </div>
