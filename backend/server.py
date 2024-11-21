@@ -73,15 +73,13 @@ async def create_user(id: str, request: UserInfo) -> createResponse:
             r"https://(www\.)?instagram\.com/", "", request.link_insta
         ).split("/")[0]
     
-    if request.link_website and(
-        request.link_website.startswith("https://")
-        or request.link_website.startswith("http://")
-    ):
-        pass  # URL is already correctly prefixed
-    elif request.link_website.startswith("www."):
-        request.link_website = f"https://{request.link_website}"
-    else:
-        request.link_website = f"https://www.{request.link_website}"
+    if request.link_website:
+        if request.link_website.startswith("https://") or request.link_website.startswith("http://"):
+            pass  # URL is already correctly prefixed
+        elif request.link_website.startswith("www."):
+            request.link_website = f"https://{request.link_website}"
+        else:
+            request.link_website = f"https://www.{request.link_website}"
 
     users[id] = request
     return createResponse(return_message=f"User {id} created successfully")
