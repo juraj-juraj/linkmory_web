@@ -82,7 +82,7 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
         }
         // Handling saving cookie on creating an account
         const expirationDate = new Date();
-        expirationDate.setMinutes(expirationDate.getMinutes() + 120);
+        expirationDate.setMinutes(expirationDate.getMinutes() + 86400);
         set_id_cookie("user_id", url_id, {expires: expirationDate});
 
         onSave();
