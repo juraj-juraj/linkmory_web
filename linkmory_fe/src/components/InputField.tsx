@@ -6,10 +6,11 @@ interface InputFieldProps {
   type: string;
   id: string;
   default_value: string;
+  capitalize?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function InputField({ icon, placeholder, type, id, default_value, onChange}: InputFieldProps) {
+function InputField({ capitalize, icon, placeholder, type, id, default_value, onChange}: InputFieldProps) {
   return (
     <div className={styles.inputWrapper}>
       <img src={icon} alt="" className={styles.inputIcon} />
@@ -20,7 +21,7 @@ function InputField({ icon, placeholder, type, id, default_value, onChange}: Inp
         className={styles.input}
         placeholder={placeholder}
         defaultValue={default_value}
-        autoCapitalize="off"
+        autoCapitalize={capitalize}
         onChange={onChange}
       />
     </div>

@@ -96,6 +96,7 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                         placeholder="Name"
                         type="text"
                         id="name"
+                        capitalize = "on"
                         default_value={user_info.name ? user_info.name : buffer_cookie["name"]}
                         onChange={(e) => set_buffer_cookie("name", e.target.value)}
                     />
@@ -113,6 +114,7 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                 <div className={styles.socialInputs}>
                     {socialInputs.map((input, index) => (
                         <InputField
+                            capitalize = "off"
                             key={index}
                             icon={input.icon}
                             placeholder={input.placeholder}
