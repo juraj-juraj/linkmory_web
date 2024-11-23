@@ -9,6 +9,7 @@ import  UpdateInfo from "./components/UpdateInfo"
 import userInfo from "./models/userModel";
 import i_but from "./assets/i_n.png";
 import howto from "./assets/howto.png";
+import logo from "./assets/logo_m.png";
 
 function App() {
   const url_id = new URLSearchParams(window.location.search).get("id"); // get id from url
@@ -23,6 +24,11 @@ function App() {
     const imageUrl = howto; // Replace with your image URL
     window.location.href = imageUrl;
   };
+
+  const openWeb = () => {
+    const imageUrl = "https://mike58smile.github.io/linkmory/"; // Replace with your image URL
+   window.location.href = imageUrl;
+  }
   useEffect(() => { // inbuild fun to constantnly use when rendering
       const api = async() => { // define assynchronous fun - not waiting for its finish
           const data = await fetch(config.bUrl + "/user/info/?id="+url_id, {method: "GET"}); // GET - ziskaj data z backend URL
@@ -47,9 +53,9 @@ function App() {
     <main className={styles.profileCreationContainer}>
         <header className={styles.headerSection}>
           <div className={styles.navbarTop}>
-            {edit_button_show ? edit_data? <></> : <div className={styles.imgNavbar}></div> : <div className={styles.imgNavbar}></div>}
+            {<button type="button" className={styles.navbarButton} onClick={openWeb}><img className={styles.imgNavbar} src={logo}/></button>}
             <h1 className={styles.headerTitle}>{edit_data ? "Profile": "Make a profile"}</h1>
-            {edit_button_show ? edit_data? <></> : <><button type="button" className={styles.navbarButton} onClick={openImage}><img className={styles.imgNavbar} src={i_but}/></button></> : <button type="button" className={styles.navbarButton} onClick={changeView}><img className={styles.imgNavbar} src="https://cdn.builder.io/api/v1/image/assets/TEMP/20e0294d36f526a71109d9b41380f86cbdbb69c17c521935c0da8b902c749413?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d"/></button>}
+            {edit_button_show ? edit_data? <><div className={styles.imgNavbar}></div></> : <><button type="button" className={styles.navbarButton} onClick={openImage}><img className={styles.imgNavbar} src={i_but}/></button></> : <button type="button" className={styles.navbarButton} onClick={changeView}><img className={styles.imgNavbar} src="https://cdn.builder.io/api/v1/image/assets/TEMP/20e0294d36f526a71109d9b41380f86cbdbb69c17c521935c0da8b902c749413?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d"/></button>}
           </div>
           <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/670fe62f49123097f1c74007524d0b953da1dd440a037cd4d654646d6e7d3feb?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d" alt="" className={styles.headerImage} />
         </header>
