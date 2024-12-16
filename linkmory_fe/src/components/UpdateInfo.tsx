@@ -42,7 +42,7 @@ const socialInputs: SocialInputData[] = [
 
 function UpdateInfo({ onSave, url_id, user_info }: props) {
     const [_, set_id_cookie] = useCookies(["user_id"])
-    const [buffer_cookie, set_buffer_cookie] = useCookies(["name", "bio", "link_fb", "link_insta", "link_linkedin"])
+    const [buffer_cookie, set_buffer_cookie] = useCookies(["name", "bio", "link_fb", "link_insta", "link_linkedin", "tel_number", "email_address"])
     async function handleSubmit(e: FormEvent<UserEditFormElement>) {
         e.preventDefault();
         const form = e.currentTarget;
@@ -54,6 +54,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
             "link_linkedin": form.elements.link_linkedin.value,
             "id_fb": "",
             "link_website": form.elements.link_website.value,
+            "tel_number": "",
+            "email_address": ""
         };
         try {
             console.log(JSON.stringify(formData));

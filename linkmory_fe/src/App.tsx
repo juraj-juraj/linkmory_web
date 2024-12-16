@@ -5,8 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import config from "./config.json";
 import styles from "./App.module.css";
 import ShowInfo from "./components/ShowInfo";
-import  UpdateInfo from "./components/UpdateInfo"
-import userInfo from "./models/userModel";
+import UpdateInfo from "./components/UpdateInfo"
+import {userInfo, UserConnection} from "./models/userModel";
 import i_but from "./assets/i_n.png";
 import howto from "./assets/howto.png";
 import logo from "./assets/logo_m.png";
@@ -14,7 +14,7 @@ import logo from "./assets/logo_m.png";
 function App() {
   const url_id = new URLSearchParams(window.location.search).get("id"); // get id from url
   const [cookie] = useCookies(["user_id"])
-  const [user_info, setInfo] = useState<userInfo>({name: "", bio: "", link_fb: "", link_insta: "", link_linkedin: ""}); // define var user_exists
+  const [user_info, setInfo] = useState<userInfo>({name: "", bio: "", link_fb: "", link_insta: "", link_linkedin: "", id_fb: "", link_website: "", tel_number: "", email_address: ""}); // define var user_exists
   const [edit_data, setView] = useState(false); // define var editData
   const [edit_button_show, setEditButtonShow] = useState(false);
   const changeView = () => { // define fun to change editData var
