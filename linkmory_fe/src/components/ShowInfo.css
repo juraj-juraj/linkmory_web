@@ -62,6 +62,12 @@
         background-color: #000000;
     }
 
+    .connection-bg {
+        background-color: white;
+        color: black;
+        border: 3px solid black;
+    }
+
     .contact-button img {
         margin-right: 10px; /* Space between image and text */
         max-height: 20px; /* Adjust the max height of the image */

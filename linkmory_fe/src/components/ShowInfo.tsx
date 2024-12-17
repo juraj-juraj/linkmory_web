@@ -72,7 +72,7 @@ function ShowInfo({user_info, cookie_id, url_id}: props) {
             {user_info.link_fb ?  <a href={fb_link} > <button className="contact-button facebook-bg"><img src={fb_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_linkedin ? <a href={user_info.link_linkedin} > <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_website ? <a href={user_info.link_website} > <button className="contact-button web-bg"><img src={web_logo}/>Visit Website</button></a> : <></>}
-            {connections_view === ActionTypes.ADD_CONNECTION ? <button className="contact-button web-bg" onClick={onClick}>Add Connection</button> : <></>}
+            {connections_view === ActionTypes.ADD_CONNECTION ? <button className="contact-button connection-bg" onClick={onClick}>Add Connection</button> : <></>}
             {connections_view === ActionTypes.SHOW_NOTE ? <></> : <></>}
             {connections_view === ActionTypes.DISPLAY_CONNECTIONS ? <ListConnections user_id={cookie_id}/> : <></>}
         </div>
