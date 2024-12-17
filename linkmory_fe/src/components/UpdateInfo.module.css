@@ -154,6 +154,14 @@
   border: 0;
 }
 
+.howToButton {
+  color: #9d3221;
+  font-size: 0.8em;
+  background-color: transparent;
+  text-align: center;
+  display: block;
+}
+
 @font-face {
   font-family: 'Dosis'; /* Name of the font */
   src: url('../fonts/Dosis-Medium.ttf'); /* Add other formats if necessary */
