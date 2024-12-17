@@ -11,32 +11,39 @@ import "./ShowInfo.css"
 
 interface props{
     user_info: userInfo;
-    cookie_id: string;
+    cookie_id: string | null;
     url_id: string | null;
 }
 enum ActionTypes {
     DISPLAY_CONNECTIONS = "display_connections",
     ADD_CONNECTION = "add_connection",
-    SHOW_NOTE = "show_note"
+    SHOW_NOTE = "show_note",
+    SHOW_NOTHING = "show_nothing"
 }
 
 function ShowInfo({user_info, cookie_id, url_id}: props) {
-    let fb_link = user_info.link_fb;
-    const[connections_view, setConnectionsView] = useState<ActionTypes>(ActionTypes.DISPLAY_CONNECTIONS);
+    const fb_link = user_info.link_fb;
+    const[connections_view, setConnectionsView] = useState<ActionTypes>(ActionTypes.SHOW_NOTHING);
 
-    cookie_id = String(cookie_id);
+
+    if (cookie_id) {
+        cookie_id = String(cookie_id);
+    }
     useEffect(() => {
         const api = async() => {
             const data = await fetch(config.bUrl + "/user/connection/person/?id=" + cookie_id + "&id_other=" + url_id, {method: "GET"});
             if(data.status === 200){
                 setConnectionsView(ActionTypes.SHOW_NOTE);
             }
-            else{
+            if(data.status === 405){
                 setConnectionsView(ActionTypes.ADD_CONNECTION);
             }
         };
-        if (url_id !== cookie_id) {
+        if (cookie_id && url_id !== cookie_id) {
             api();
+        }
+        else if (cookie_id && url_id === cookie_id) {
+            setConnectionsView(ActionTypes.DISPLAY_CONNECTIONS);
         }
     }, [cookie_id, url_id]);
 

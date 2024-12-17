@@ -1,0 +1,56 @@
+.list-connections-main {
+    top: 0em;
+    bottom: 0em;
+    right: 0em;
+    left: 0em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.list-connections-main .heading {
+    font-family: 'Dosis';
+    text-align: center;
+}
+
+.connection-list{
+    right: 2em;
+    left: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+
+.connection-list .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.connection-list .item button {
+    align-self: flex-end;
+    margin: 0;
+    margin-right: 2em;
+}
+
+.connection-list .item p {
+    align-self: flex-start;
+    font-family: 'Dosis';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-left: 2em;
+}
+
+.connection-list .item .list-delimiter-line {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
