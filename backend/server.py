@@ -90,6 +90,13 @@ async def create_user(id: str, request: UserInfo) -> createResponse:
     if not request.name:
         if id in users:
             del users[id]
+            if connections.get(id):
+                del connections[id]
+            for connections_list in connections.values():
+                for connection in connections_list:
+                    if connection.id_other == id:
+                        connections_list.remove(connection)
+                        break
             logging.info(f"Deleting user {id}")
             return createResponse(return_message=f"User {id} deleted successfully")
         logging.info(f"Id {id} not created")
@@ -212,7 +219,6 @@ async def get_connections(id: str) -> list[UserConnectionResponse]:
 @app.get("/api/user/connection/person")
 async def get_connections_person(id: str, id_other: str) -> UserConnection:
     global connections
-    print("In get_connections_person")
     if id not in users:
         raise HTTPException(status_code=404, detail=f"User {id} does not exist")
     if id_other not in users:
@@ -223,7 +229,7 @@ async def get_connections_person(id: str, id_other: str) -> UserConnection:
             return connection
 
     raise HTTPException(
-        status_code=404, detail=f"Connection between {id} and {id_other} does not exist"
+        status_code=405, detail=f"Connection between {id} and {id_other} does not exist"
     )
 
 
