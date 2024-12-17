@@ -7,6 +7,8 @@ import insta_logo from "../assets/instagram.png";
 import linkedin_logo from "../assets/linkedin.png";
 import web_logo from '../assets/fi_link_w.png';
 import ListConnections from "./listConnections";
+import mailIcon from "../assets/mail_icon.png";
+import phoneIcon from "../assets/call_icon.png";
 import "./ShowInfo.css"
 
 interface props{
@@ -68,10 +70,12 @@ function ShowInfo({user_info, cookie_id, url_id}: props) {
         <div className="show-info-main">
             <h1 className="heading" >{user_info.name}</h1>
             <p className="bio"> {user_info.bio}</p>
+            {user_info.link_linkedin ? <a href={user_info.link_linkedin} > <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_insta ? <a href={"https://instagram.com/" + user_info.link_insta}> <button className="contact-button insta-bg"><img src={insta_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_fb ?  <a href={fb_link} > <button className="contact-button facebook-bg"><img src={fb_logo}/>Get Contact</button></a> : <></>}
-            {user_info.link_linkedin ? <a href={user_info.link_linkedin} > <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_website ? <a href={user_info.link_website} > <button className="contact-button web-bg"><img src={web_logo}/>Visit Website</button></a> : <></>}
+            {user_info.tel_number ? <a > <button className="contact-button transparent-bg"><img src={phoneIcon}/>{user_info.tel_number}</button></a>  : <></>}
+            {user_info.email_address ? <a > <button className="contact-button transparent-bg"><img src={mailIcon}/>{user_info.email_address}</button></a> : <></>}
             {connections_view === ActionTypes.ADD_CONNECTION ? <button className="contact-button connection-bg" onClick={onClick}>Add Connection</button> : <></>}
             {connections_view === ActionTypes.SHOW_NOTE ? <></> : <></>}
             {connections_view === ActionTypes.DISPLAY_CONNECTIONS ? <ListConnections user_id={cookie_id}/> : <></>}

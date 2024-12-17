@@ -5,7 +5,10 @@ import config from "../config.json";
 import userInfo from "../models/userModel";
 import styles from "./UpdateInfo.module.css";
 import InputField from './InputField.tsx';
-import linkIcon from '../assets/fi_link.png';
+import linkIcon from '../assets/web_icon_new.png';
+import mailIcon from "../assets/mail_icon.png";
+import phoneIcon from "../assets/call_icon.png";
+import howto from "../assets/howto.png";
 
 
 interface props {
@@ -20,6 +23,8 @@ interface FormElements extends HTMLFormControlsCollection {
     link_insta: HTMLInputElement
     link_linkedin: HTMLInputElement
     link_website: HTMLInputElement
+    tel_number: HTMLInputElement
+    email_address: HTMLInputElement
 }
 
 interface UserEditFormElement extends HTMLFormElement {
@@ -34,10 +39,12 @@ interface SocialInputData {
 }
 
 const socialInputs: SocialInputData[] = [
+    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' , id: "link_linkedin", type: "url"},
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/817a4bb9f1582e38e00c679fa15d20f31845ca6af648255c3b77e09fd8d36174?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Your Instagram username', id: "link_insta", type: "text" },
     { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c74d3c6cea8a1db389dadde13971b93162450de59728897220ae96fb96aa9997?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your Facebook URL' , id: "link_fb", type: "url"},
-    { icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/f6a85497c32a9fb142a8f2cf5703efa8d18989782547db7e5c28cc5142a3e343?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d', placeholder: 'Paste your LinkedIn URL' , id: "link_linkedin", type: "url"},
     { icon: linkIcon, placeholder: 'Paste your Website URL' , id: "link_website", type: "text"},
+    { icon: phoneIcon, placeholder: "Your phone number" , id: "tel_number", type: "tel"},
+    { icon: mailIcon, placeholder: "Your email address" , id: "email_address", type: "email"},
 ];
 
 function UpdateInfo({ onSave, url_id, user_info }: props) {
@@ -54,8 +61,8 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
             "link_linkedin": form.elements.link_linkedin.value,
             "id_fb": "",
             "link_website": form.elements.link_website.value,
-            "tel_number": "",
-            "email_address": ""
+            "tel_number": form.elements.tel_number.value,
+            "email_address": form.elements.email_address.value
         };
         try {
             console.log(JSON.stringify(formData));
@@ -89,6 +96,10 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
 
         onSave();
     }
+    const openHowTo = () => {
+        const imageUrl = howto; // Replace with your image URL
+        window.location.href = imageUrl;
+    };
     return (
         <form className={styles.formContainer} onSubmit={handleSubmit}>
             <section className={styles.formSection}>
@@ -114,6 +125,7 @@ function UpdateInfo({ onSave, url_id, user_info }: props) {
                     </div>
                 </div>
                 <div className={styles.socialInputs}>
+                    <button className={`${styles.inputWrapper} ${styles.howToButton}`} onClick={openHowTo}>How to find URL to my profile?</button>
                     {socialInputs.map((input, index) => (
                         <InputField
                             capitalize = "off"

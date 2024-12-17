@@ -68,6 +68,11 @@
         border: 3px solid black;
     }
 
+    .transparent-bg {
+        background-color: rgb(231, 231, 231);
+        color: black;
+    }
+
     .contact-button img {
         margin-right: 10px; /* Space between image and text */
         max-height: 20px; /* Adjust the max height of the image */
