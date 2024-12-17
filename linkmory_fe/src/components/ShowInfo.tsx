@@ -1,24 +1,62 @@
-import userInfo from "../models/userModel"
+import{useState, useEffect} from "react";
+
+import config from "../config.json";
+import {userInfo} from "../models/userModel"
 import fb_logo from "../assets/facebook.png";
 import insta_logo from "../assets/instagram.png";
 import linkedin_logo from "../assets/linkedin.png";
 import web_logo from '../assets/fi_link_w.png';
+import ListConnections from "./listConnections";
 import "./ShowInfo.css"
 
 interface props{
     user_info: userInfo;
+    cookie_id: string;
+    url_id: string | null;
+}
+enum ActionTypes {
+    DISPLAY_CONNECTIONS = "display_connections",
+    ADD_CONNECTION = "add_connection",
+    SHOW_NOTE = "show_note"
 }
 
-function ShowInfo({user_info}: props) {
-    const userAgent = navigator.userAgent.toLowerCase();
+function ShowInfo({user_info, cookie_id, url_id}: props) {
     let fb_link = user_info.link_fb;
-    /*if (/iphone|ipad|ipod/.test(userAgent)) {
-        console.log('iOS');
-        fb_link = "fb://profile/" + user_info.id_fb;
-    } else if (/android/.test(userAgent)) {
-        console.log('Android');
-        fb_link = "intent://profile/" +user_info.id_fb + "#Intent;package=com.facebook.katana;scheme=fb;end";
-    }*/
+    const[connections_view, setConnectionsView] = useState<ActionTypes>(ActionTypes.DISPLAY_CONNECTIONS);
+
+    cookie_id = String(cookie_id);
+    useEffect(() => {
+        const api = async() => {
+            const data = await fetch(config.bUrl + "/user/connection/person/?id=" + cookie_id + "&id_other=" + url_id, {method: "GET"});
+            if(data.status === 200){
+                setConnectionsView(ActionTypes.SHOW_NOTE);
+            }
+            else{
+                setConnectionsView(ActionTypes.ADD_CONNECTION);
+            }
+        };
+        if (url_id !== cookie_id) {
+            api();
+        }
+    }, [cookie_id, url_id]);
+
+    async function onClick() {
+        const request_data = {
+            "id_other": url_id,
+            "note": ""
+        };
+        const response = await fetch(config.bUrl + "/user/connection/create?id=" + cookie_id, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(request_data)
+        });
+        if (response.status === 200) {
+            setConnectionsView(ActionTypes.SHOW_NOTE);
+        }
+    }
+
     return (
         <div className="show-info-main">
             <h1 className="heading" >{user_info.name}</h1>
@@ -27,6 +65,9 @@ function ShowInfo({user_info}: props) {
             {user_info.link_fb ?  <a href={fb_link} > <button className="contact-button facebook-bg"><img src={fb_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_linkedin ? <a href={user_info.link_linkedin} > <button className="contact-button linkedin-bg"><img src={linkedin_logo}/>Get Contact</button></a> : <></>}
             {user_info.link_website ? <a href={user_info.link_website} > <button className="contact-button web-bg"><img src={web_logo}/>Visit Website</button></a> : <></>}
+            {connections_view === ActionTypes.ADD_CONNECTION ? <button className="contact-button web-bg" onClick={onClick}>Add Connection</button> : <></>}
+            {connections_view === ActionTypes.SHOW_NOTE ? <></> : <></>}
+            {connections_view === ActionTypes.DISPLAY_CONNECTIONS ? <ListConnections user_id={cookie_id}/> : <></>}
         </div>
     );
 }

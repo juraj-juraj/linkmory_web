@@ -37,6 +37,10 @@ class UserConnectionDump(UserConnection):
     id: str
 
 
+class UserConnectionResponse(UserConnection):
+    person_name: Optional[str] = None
+
+
 class DataDump(BaseModel):
     users: list[UserInfoDump]
     connections: list[UserConnectionDump]
@@ -158,6 +162,8 @@ async def load_data(data: DataDump) -> createResponse:
         users[user.id] = UserInfo(
             **{k: v for k, v in user.model_dump().items() if k in UserInfo.model_fields.keys()}
         )
+        connections[user.id] = []
+
     for connection in data.connections:
         connections[connection.id].append(
             UserConnection(
@@ -171,10 +177,9 @@ async def load_data(data: DataDump) -> createResponse:
     return createResponse(return_message="Data loaded successfully")
 
 
-@app.post("/api/user/connection/")
+@app.post("/api/user/connection/create/")
 async def create_connection(id: str, request: UserConnection) -> createResponse:
     global connections
-    print("In create_connection")
     if id not in users:
         raise HTTPException(status_code=404, detail=f"User {id} does not exist")
     if request.id_other not in users:
@@ -187,14 +192,39 @@ async def create_connection(id: str, request: UserConnection) -> createResponse:
     return createResponse(return_message=f"Connection created successfully")
 
 
-@app.get("/api/user/connections/")
-async def get_connections(id: str) -> list[UserConnection]:
+@app.get("/api/user/connection/list/")
+async def get_connections(id: str) -> list[UserConnectionResponse]:
     global connections
-    print("In get_connections")
     if id not in users:
         raise HTTPException(status_code=404, detail=f"User {id} does not exist")
     user_connections = connections[id] if id in connections else []
-    return user_connections
+    user_connections_response = []
+    for connection in user_connections:
+        user_connections_response.append(
+            UserConnectionResponse(
+                person_name=users[connection.id_other].name,
+                **connection.model_dump(),
+            )
+        )
+    return user_connections_response
+
+
+@app.get("/api/user/connection/person")
+async def get_connections_person(id: str, id_other: str) -> UserConnection:
+    global connections
+    print("In get_connections_person")
+    if id not in users:
+        raise HTTPException(status_code=404, detail=f"User {id} does not exist")
+    if id_other not in users:
+        raise HTTPException(status_code=404, detail=f"User {id_other} does not exist")
+    user_connections = connections[id] if id in connections else []
+    for connection in user_connections:
+        if connection.id_other == id_other:
+            return connection
+
+    raise HTTPException(
+        status_code=404, detail=f"Connection between {id} and {id_other} does not exist"
+    )
 
 
 @app.get("/api/user/exist/")

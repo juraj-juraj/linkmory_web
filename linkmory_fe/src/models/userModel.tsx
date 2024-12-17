@@ -13,6 +13,8 @@ interface userInfo {
 interface UserConnection {
     id_other: string,
     note: string,
+    connection_created?: number | null,
+    person_name?: string | null,
 }
 
 export type {userInfo, UserConnection};
