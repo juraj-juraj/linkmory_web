@@ -45,7 +45,7 @@ function ListConnections({user_id}: props) {
                         <p>
                             {connection.person_name}
                         </p>
-                        <button className="contact-button web-bg " onClick={() => handleClick(connection.id_other)}>
+                        <button className="contact-button web-bg" onClick={() => handleClick(connection.id_other)}>
                             Visit profile
                         </button>
                     </div>
