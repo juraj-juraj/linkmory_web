@@ -16,7 +16,7 @@ function App() {
   const [cookie] = useCookies(["user_id"])
   const [user_info, setInfo] = useState<userInfo>({name: "", bio: "", link_fb: "", link_insta: "", link_linkedin: "", id_fb: "", link_website: "", tel_number: "", email_address: ""}); // define var user_exists
   const [edit_data, setView] = useState(false); // define var editData
-  const [edit_button_show, setEditButtonShow] = useState(false);
+  const [editable_profile, setEditableProfile] = useState(false);
   const changeView = () => { // define fun to change editData var
     setView(view => !view);
   }
@@ -42,12 +42,12 @@ function App() {
           setInfo(await data.json()); // set the user_exists var
       }; // end of lambda fun
       api(); // run the lambda fun
-      setEditButtonShow(!(edit_data && (url_id == cookie.user_id)));
+      setEditableProfile(!(edit_data && (url_id == cookie.user_id)));
       
-      console.log("edit_data: ", edit_data);
-      console.log("url_id: ", edit_data && (url_id == cookie.user_id));
-      console.log("cookie.user_id: ", cookie.user_id);
-      console.log("edit_button_show: ", edit_button_show);
+      // console.log("edit_data: ", edit_data);
+      // console.log("url_id: ", edit_data && (url_id == cookie.user_id));
+      // console.log("cookie.user_id: ", cookie.user_id);
+      // console.log("edit_button_show: ", editable_profile);
   }, [url_id, edit_data, user_info.name]); // call useEffect when url_id is changed
   return (
     <main className={styles.profileCreationContainer}>
@@ -55,12 +55,12 @@ function App() {
           <div className={styles.navbarTop}>
             {<button type="button" className={styles.navbarButton} onClick={openWeb}><img className={styles.imgNavbar} src={logo}/></button>}
             <h1 className={styles.headerTitle}>{edit_data ? "Profile": "Make a profile"}</h1>
-            {edit_button_show ? edit_data? <><div className={styles.imgNavbar}></div></> : <><button type="button" className={styles.navbarButton} onClick={openImage}><img className={styles.imgNavbar} src={i_but}/></button></> : <button type="button" className={styles.navbarButton} onClick={changeView}><img className={styles.imgNavbar} src="https://cdn.builder.io/api/v1/image/assets/TEMP/20e0294d36f526a71109d9b41380f86cbdbb69c17c521935c0da8b902c749413?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d"/></button>}
+            {editable_profile ? edit_data? <><div className={styles.imgNavbar}></div></> : <><button type="button" className={styles.navbarButton} onClick={openImage}><img className={styles.imgNavbar} src={i_but}/></button></> : <button type="button" className={styles.navbarButton} onClick={changeView}><img className={styles.imgNavbar} src="https://cdn.builder.io/api/v1/image/assets/TEMP/20e0294d36f526a71109d9b41380f86cbdbb69c17c521935c0da8b902c749413?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d"/></button>}
           </div>
           <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/670fe62f49123097f1c74007524d0b953da1dd440a037cd4d654646d6e7d3feb?placeholderIfAbsent=true&apiKey=f560b18130354807b388ec0c9e912c6d" alt="" className={styles.headerImage} />
         </header>
     {/* Based on edit_data - decide which React fun to render (run) - pass the changeView var through onSave fun*/}
-    {edit_data ? <ShowInfo user_info={user_info} /> : <UpdateInfo onSave={changeView} url_id={url_id} user_info={user_info}/>}
+    {edit_data ? <ShowInfo user_info={user_info} cookie_id={cookie.user_id} url_id={url_id}/> : <UpdateInfo onSave={changeView} url_id={url_id} user_info={user_info}/>}
     </main>);
 }
 
