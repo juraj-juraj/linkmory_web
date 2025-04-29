@@ -1,8 +1,8 @@
 import { FormEvent } from "react"
 import { useCookies } from 'react-cookie';
 
-import config from "../config.json";
-import userInfo from "../models/userModel";
+import config from "../config";
+import userInfo from "../models/userModel.tsx";
 import styles from "./UpdateInfo.module.css";
 import InputField from './InputField.tsx';
 import linkIcon from '../assets/web_icon_new.png';

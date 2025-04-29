@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useCookies } from 'react-cookie';
 import "bootstrap/dist/css/bootstrap.css";
 
-import config from "./config.json";
+import config from "./config";
 import styles from "./App.module.css";
 import ShowInfo from "./components/ShowInfo";
 import UpdateInfo from "./components/UpdateInfo"

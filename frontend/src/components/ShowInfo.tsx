@@ -1,6 +1,6 @@
 import{useState, useEffect} from "react";
 
-import config from "../config.json";
+import config from "../config";
 import {userInfo} from "../models/userModel"
 import fb_logo from "../assets/facebook.png";
 import insta_logo from "../assets/instagram.png";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import config from "../config.json";
+import config from "../config";
 import {UserConnection} from "../models/userModel"
 
 import "./listConnections.css"
