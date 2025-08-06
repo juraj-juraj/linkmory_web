@@ -12,7 +12,8 @@ import howto from "./assets/howto.png";
 import logo from "./assets/logo_m.png";
 
 function App() {
-  const url_id = new URLSearchParams(window.location.search).get("id"); // get id from url
+  //const url_id = new URLSearchParams(window.location.search).get("id"); // get id from url
+  const url_id = window.location.pathname.startsWith('/id/') ? window.location.pathname.substring(4) : null;
   const [cookie] = useCookies(["user_id"])
   const [user_info, setInfo] = useState<userInfo>({name: "", bio: "", link_fb: "", link_insta: "", link_linkedin: "", id_fb: "", link_website: "", tel_number: "", email_address: ""}); // define var user_exists
   const [edit_data, setView] = useState(false); // define var editData

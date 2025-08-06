@@ -1,4 +1,7 @@
+TO DO:
+- change the RENDER frontend startup param to npm run build
 Frontend --------
+    npm install
     npm run dev -- --host
     http://localhost:5173/
 
@@ -25,6 +28,13 @@ How to run:
 
 http://172.16.22.104:8000/api/user/info/?id=USER_ID
 
+GIT
+To get rid of the folder from the previous branch after switching to new one 
+git clean -fd
+
+OTHER NOTES
+Development: npm run dev → uses http://localhost:8000/api
+Production: npm run build → uses https://linkmory-backend.onrender.com/api
 
 When installing project ------------------
 Backend - in CMD
